@@ -1,0 +1,33 @@
+.external-div{
+    background-color: #ffcbdb;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.title{
+    color: #ffffff;
+    padding: 50px 0 50px 0;
+    margin-right: 20px;
+}
+
+.lista{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista div {
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+.title-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
