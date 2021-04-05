@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const Api = Axios.create({
-    baseURL: 'https://desafioaba.nexusdev.com.br/api'
+    baseURL: 'http://localhost/dev/desafio_aba/api'
 });
 
 export default Api;

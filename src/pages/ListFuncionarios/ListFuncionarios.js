@@ -32,6 +32,7 @@ const ListFuncionarios = () => {
 	async function handleDelete(id) {
 		await Api.delete(`/funcionario.php?id=${id}`).then(resp => {
 			getFuncionarios();
+			alert('Excluído com sucesso!');
 		}).catch(err => {
 			console.log(err);
 		});
@@ -52,7 +53,6 @@ const ListFuncionarios = () => {
 	async function getDepartamento() {
 		await Api.get('/departamento.php').then(resp => {
 			setDepartamentos(resp.data);
-			console.log(resp.data);
 		}).catch(err => {
 			console.log(err);
 		});
@@ -71,6 +71,7 @@ const ListFuncionarios = () => {
 
 			await Api.post('/funcionario.php', itens).then(resp => {
 				getFuncionarios();
+				alert('Cadastrado com sucesso!');
 				setNome('');
 				setDep('');
 				setFuncao('');
@@ -90,11 +91,12 @@ const ListFuncionarios = () => {
 			'nome': nomeEdit, 
 			'id_dep': idDepEdit,
 			'funcao': funcaoEdit,
-			'data_nascimento': '22/04/1999'
+			'data_nascimento': idadeEdit
 		};
 
 		await Api.put(`/funcionario.php?id=${idEdit}`, itens).then(resp => {
 			getFuncionarios();
+			alert('Alterado com sucesso!');
 		}).catch(err => {
 			console.log(err);
 		});
@@ -156,6 +158,7 @@ const ListFuncionarios = () => {
 									<div>
 										<label class="form-label mt-3">Departamento</label>
 										<select class="form-select" aria-label="Default select example" value={idDep} onChange={text => setDep(text.target.value)}>
+										<option value='' selected>Selecione</option>
 											{
 												departamentos.map(departamento => (
 													<option value={departamento.id}>{departamento.descricao}</option>
@@ -170,8 +173,8 @@ const ListFuncionarios = () => {
 									</div>
 
 									<div>
-										<label class="form-label mt-3">Data de Nascimento:</label>
-										<input class="form-control" value={dataNasc} onChange={text => setDataNasc(text.target.value)}/>
+										<label class="form-label mt-3">Data de Nascimento</label>
+										<input class="form-control" value={dataNasc} onChange={text => setDataNasc(text.target.value)} placeholder="dd/mm/aaaa" maxlength="10"/>
 									</div>
 
 									<div class="modal-footer">
@@ -223,13 +226,13 @@ const ListFuncionarios = () => {
 									</div>
 
 									<div>
-										<label class="form-label mt-3">Data de Nascimento:</label>
-										<input class="form-control" value={idadeEdit} onChange={text => setIdadeEdit(text.target.value)}/>
+										<label class="form-label mt-3">Data de Nascimento</label>
+										<input class="form-control" value={idadeEdit} onChange={text => setIdadeEdit(text.target.value)} placeholder="dd/mm/aaaa" maxlength="10"/>
 									</div>
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-										<button type="submit" class="btn btn-primary">Adicionar</button>
+										<button type="submit" class="btn btn-primary">Alterar</button>
 									</div>
 								</form>
 							</div>
